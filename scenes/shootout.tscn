@@ -1,0 +1,116 @@
+[gd_scene load_steps=12 format=3 uid="uid://1cuv6lbmhhoh"]
+
+[ext_resource type="Texture2D" uid="uid://ex5cjwof31tm" path="res://content/textures/ball.png" id="1_hsxtp"]
+[ext_resource type="Texture2D" uid="uid://dhloutnceaykg" path="res://content/textures/pitch.png" id="1_n3isj"]
+[ext_resource type="Script" uid="uid://bp75pykowpfiv" path="res://scripts/shooting.gd" id="1_tx3n2"]
+[ext_resource type="Texture2D" uid="uid://dxminm27wv6bg" path="res://content/textures/ball_shadow.png" id="3_2xs8b"]
+[ext_resource type="PackedScene" uid="uid://ct6j6goafcrgy" path="res://scenes/indicator.tscn" id="4_4yjbp"]
+[ext_resource type="FontFile" uid="uid://b2loifn57fsqa" path="res://content/font/Oleaguid.ttf" id="4_bx4u6"]
+[ext_resource type="Script" uid="uid://byvdm2ixe7wh3" path="res://scripts/debug.gd" id="4_l1fd1"]
+[ext_resource type="Script" uid="uid://65x4gyerryi4" path="res://scripts/controls.gd" id="7_p5axl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4yjbp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4yjbp"]
+radius = 6.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_l1fd1"]
+font = ExtResource("4_bx4u6")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(160, 90)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_n3isj")
+
+[node name="Goal" type="Area2D" parent="."]
+position = Vector2(160, 30)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
+scale = Vector2(7, 2.4)
+shape = SubResource("RectangleShape2D_4yjbp")
+
+[node name="Ball" type="Node2D" parent="."]
+position = Vector2(160, 150)
+scale = Vector2(0.5, 0.5)
+
+[node name="ShadowSprite" type="Sprite2D" parent="Ball"]
+texture = ExtResource("3_2xs8b")
+
+[node name="BallSprite" type="Sprite2D" parent="Ball"]
+texture = ExtResource("1_hsxtp")
+
+[node name="Area2D" type="Area2D" parent="Ball"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball/Area2D"]
+shape = SubResource("CircleShape2D_4yjbp")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Direction" parent="UI" instance=ExtResource("4_4yjbp")]
+position = Vector2(80, 172)
+Name = "Direction"
+
+[node name="Height" parent="UI" instance=ExtResource("4_4yjbp")]
+position = Vector2(160, 172)
+Name = "Height"
+
+[node name="Speed" parent="UI" instance=ExtResource("4_4yjbp")]
+position = Vector2(240, 172)
+Name = "Power"
+
+[node name="Debug" type="Node2D" parent="." node_paths=PackedStringArray("Direction", "Height", "Speed", "Missed", "Shoot")]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("4_l1fd1")
+Direction = NodePath("Direction")
+Height = NodePath("Height")
+Speed = NodePath("Speed")
+Missed = NodePath("Missed")
+Shoot = NodePath("../Scripts/Shooting")
+
+[node name="Direction" type="Label" parent="Debug"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 44.0
+offset_bottom = 27.0
+label_settings = SubResource("LabelSettings_l1fd1")
+
+[node name="Height" type="Label" parent="Debug"]
+offset_left = 4.0
+offset_top = 30.0
+offset_right = 44.0
+offset_bottom = 53.0
+label_settings = SubResource("LabelSettings_l1fd1")
+
+[node name="Speed" type="Label" parent="Debug"]
+offset_left = 4.0
+offset_top = 56.0
+offset_right = 44.0
+offset_bottom = 79.0
+label_settings = SubResource("LabelSettings_l1fd1")
+
+[node name="Missed" type="Label" parent="Debug"]
+offset_left = 4.0
+offset_top = 78.0
+offset_right = 44.0
+offset_bottom = 101.0
+label_settings = SubResource("LabelSettings_l1fd1")
+
+[node name="Scripts" type="Node" parent="."]
+
+[node name="Shooting" type="Node" parent="Scripts" node_paths=PackedStringArray("Ball", "Ball_Sprite", "Goal")]
+script = ExtResource("1_tx3n2")
+Ball = NodePath("../../Ball")
+Ball_Sprite = NodePath("../../Ball/BallSprite")
+Goal = NodePath("../../Goal")
+
+[node name="Controls" type="Node" parent="Scripts" node_paths=PackedStringArray("Shooting", "DirectionIndicator", "HeightIndicator", "SpeedIndicator")]
+script = ExtResource("7_p5axl")
+Shooting = NodePath("../Shooting")
+DirectionIndicator = NodePath("../../UI/Direction")
+HeightIndicator = NodePath("../../UI/Height")
+SpeedIndicator = NodePath("../../UI/Speed")
