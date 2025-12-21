@@ -28,6 +28,7 @@ const GRAVITY : int = 100
 const SPEED_DECAY : int = 25
 
 var missed : int = 0
+var hit_post : bool = false
 
 var initial_speed : float
 var initial_direction : float
@@ -70,6 +71,12 @@ func _process(delta: float) -> void:
 					elif (Ball.position.x < LEFT_POST):
 						Ball.position.x = LEFT_POST
 				
+			if (collision.size() > 0 and not hit_post):
+				if (Ball.position.x < LEFT_POST or Ball.position.x > RIGHT_POST):
+					initial_direction *= -1
+					direction *= -1
+					hit_post = true
+									
 			## Sprite offset for depth
 			Ball_Sprite.position.y -= z_axis * delta
 			z_axis -= GRAVITY * delta
@@ -78,6 +85,12 @@ func _process(delta: float) -> void:
 				z_axis = height
 		
 			if (speed < 1 and missed == 0):
+				if (collision.size() ==0):
+					missed = -1
+				else:
+					missed = 1
+					
+			if (Ball.position.y < 0):
 				missed = -1
 		
 		BallState.STOPPED:
@@ -89,6 +102,7 @@ func _process(delta: float) -> void:
 				
 func ready_ball() -> void:
 	missed = false
+	hit_post = false
 	Ball.position = BALL_START_POSITION
 	state = BallState.READY
 	Ball_Sprite.position.y = 0
@@ -111,3 +125,7 @@ func shoot(bar_direction : float, bar_height: float, bar_speed : float) -> void:
 func remap_value(v: float, old_min := -68.0, old_max := 68.0, new_min := -25.0, new_max := 25.0) -> float:
 	var t := (v - old_min) / (old_max - old_min)
 	return new_min + t * (new_max - new_min)
+	
+func colliding_with_post() -> bool:
+	var is_colliding : bool = false
+	return is_colliding
