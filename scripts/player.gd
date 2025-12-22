@@ -30,6 +30,7 @@ func reset() -> void:
 func _on_animation_finished() -> void:
 	emit_signal("ShotTaken")
 	Sprite.set_frame_and_progress(0, 0)
+	AudioManager.play("ball_hit")
 	
 func set_skin(to : String) -> void:
 	if (to == "opponent"):

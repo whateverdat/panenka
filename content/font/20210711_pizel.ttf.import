@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://b2loifn57fsqa"
-path="res://.godot/imported/Oleaguid.ttf-b72f6e3dd5e88f124309dab929128b77.fontdata"
+uid="uid://52h841q6ybnn"
+path="res://.godot/imported/20210711_pizel.ttf-2718a2d9c525149c8963618b94673c41.fontdata"
 
 [deps]
 
-source_file="res://content/font/Oleaguid.ttf"
-dest_files=["res://.godot/imported/Oleaguid.ttf-b72f6e3dd5e88f124309dab929128b77.fontdata"]
+source_file="res://content/font/20210711_pizel.ttf"
+dest_files=["res://.godot/imported/20210711_pizel.ttf-2718a2d9c525149c8963618b94673c41.fontdata"]
 
 [params]
 

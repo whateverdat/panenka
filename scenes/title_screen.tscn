@@ -1,0 +1,77 @@
+[gd_scene load_steps=8 format=3 uid="uid://ldc15fhl7gku"]
+
+[ext_resource type="Texture2D" uid="uid://owis1p3mh61w" path="res://content/textures/background.png" id="1_fgkus"]
+[ext_resource type="Script" uid="uid://c034sqth1r706" path="res://scripts/title_screen.gd" id="1_mgrm8"]
+[ext_resource type="Texture2D" uid="uid://ccofohllm1k43" path="res://content/textures/Trophy.png" id="2_sa3yf"]
+[ext_resource type="FontFile" uid="uid://52h841q6ybnn" path="res://content/font/20210711_pizel.ttf" id="12_htdhw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_s4lrb"]
+font = ExtResource("12_htdhw")
+font_color = Color(1, 0.9137255, 0.28627452, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mgrm8"]
+font = ExtResource("12_htdhw")
+font_color = Color(0.8039216, 0.8235294, 0.85490197, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dc4i4"]
+font = ExtResource("12_htdhw")
+font_size = 8
+font_color = Color(0.6509804, 0.68235296, 0.7294118, 1)
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("Score_Text", "Champions", "Eliminated")]
+script = ExtResource("1_mgrm8")
+Score_Text = NodePath("Score")
+Champions = NodePath("Champions")
+Eliminated = NodePath("Eliminated")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(160, 90)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_fgkus")
+
+[node name="Champions" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Champions"]
+position = Vector2(160, 67)
+scale = Vector2(5, 5)
+texture = ExtResource("2_sa3yf")
+
+[node name="Text" type="Label" parent="Champions"]
+offset_top = 103.0
+offset_right = 320.0
+offset_bottom = 126.0
+text = "CHAMPIONS!"
+label_settings = SubResource("LabelSettings_s4lrb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Eliminated" type="Label" parent="."]
+visible = false
+offset_top = 63.0
+offset_right = 320.0
+offset_bottom = 86.0
+text = "ELIMINATED!"
+label_settings = SubResource("LabelSettings_s4lrb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="."]
+offset_top = 138.0
+offset_right = 320.0
+offset_bottom = 161.0
+text = "SCORE: 0"
+label_settings = SubResource("LabelSettings_mgrm8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InfoText" type="Label" parent="."]
+offset_top = 164.0
+offset_right = 320.0
+offset_bottom = 187.0
+text = "RIGHT CLICK TO GO BACK"
+label_settings = SubResource("LabelSettings_dc4i4")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -16,6 +16,7 @@ var velocity : Vector2 = Vector2.ZERO
 var collider_size : int = 0
 
 func _ready() -> void:
+	set_skin("opponent")
 	get_ready()
 	
 func _process(delta: float) -> void:
@@ -82,6 +83,8 @@ func dive(manual : bool = false, clicked_x : float = 0) -> void:
 		random_dive_speed = 5
 		
 func set_skin(to : String) -> void:
+	if (to == "opponent"):
+		to += str(GamestateManager.current_stage)
 	Sprite.animation = to
 	
 	

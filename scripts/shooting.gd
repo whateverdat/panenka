@@ -130,6 +130,7 @@ func _determine_goal() -> void:
 			
 func _update_ball(delta : float) -> void:
 	if (Goalie.collider_size > 1 and missed == 0 and Ball_Sprite.position.y > -50):
+		AudioManager.play("keeper_save")
 		Goalie.saved()
 		Ball.hide()
 		speed = 0
@@ -198,6 +199,7 @@ func _update_ball(delta : float) -> void:
 				initial_direction *= -1
 				direction *= -1
 				hit_post = true
+				AudioManager.play("post_hit")
 							
 	## Sprite offset for depth
 	Ball_Sprite.position.y -= z_axis * delta

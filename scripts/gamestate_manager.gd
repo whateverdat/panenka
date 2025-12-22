@@ -40,6 +40,8 @@ func reset_game() -> void:
 	shot_taken = 0
 	opponent_score = 0
 	team_score = 0
+	opponent_score_buffer = 0
+	team_score_buffer = 0
 	
 	
 func increase_score(amount : int) -> void:
@@ -55,7 +57,6 @@ func increase_score(amount : int) -> void:
 	
 	
 func increase_stage() -> void:
-	print("Next Stage!")
 	shot_taken = 0
 	opponent_score = 0
 	team_score = 0
@@ -72,11 +73,12 @@ func increase_stage() -> void:
 	
 func _terminate_game() -> void:
 	## TODO: Title Screen
-	print("Game over, Score: " + str(score))
+	get_tree().change_scene_to_file("res://scenes/title_screen.tscn")
+
 	
 	
 func increase_total_shot_taken() -> void:
-	print(str(shot_taken))
+	AudioManager.play("cheer")
 	shot_taken += 1
 	
 	

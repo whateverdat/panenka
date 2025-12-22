@@ -31,6 +31,7 @@ var state : ControlsState = ControlsState.DIRECTION
 var is_stage_cleared : bool = false
 
 func _ready() -> void:
+	AudioManager.play("whistle")
 	set_indicator_states()
 	PenaltyTaker.connect("ShotTaken", _handle_shot_taken)
 	Announce.connect("AnnouncerCompleted", _announcer_completed)

@@ -38,23 +38,28 @@ func announce(announcement : String) -> void:
 	match announcement.to_upper():
 		
 		"PANENKA!":
+			AudioManager.play("hit_net")
 			if (players_turn):
 				GamestateManager.increase_score(PANENKA_SCORE)
 			else: 
 				GamestateManager.increase_score(CONCEDE_GOAL_SCORE)
 				
-		"FROM_THE_POST!"	:
-			if (players_turn): GamestateManager.increase_score(FROM_THE_POST_SCORE)
+		"FROM THE POST!"	:
+			AudioManager.play("hit_net")
+			if (players_turn): 
+				GamestateManager.increase_score(FROM_THE_POST_SCORE)
 			else: 
 				GamestateManager.increase_score(CONCEDE_GOAL_SCORE)
 			
 		"POWER SHOT!":
+			AudioManager.play("hit_net")
 			if (players_turn):
 				GamestateManager.increase_score(POWERSHOT_SCORE)
 			else: 
 				GamestateManager.increase_score(CONCEDE_GOAL_SCORE)
 				
 		"GOAL!":
+			AudioManager.play("hit_net")
 			if (players_turn):
 				GamestateManager.increase_score(REGULAR_GOAL_SCORE)
 			else: 

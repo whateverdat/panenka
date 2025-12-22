@@ -1,15 +1,15 @@
 [gd_scene load_steps=7 format=3 uid="uid://ct6j6goafcrgy"]
 
 [ext_resource type="Script" uid="uid://dgwfepwwwyke3" path="res://scripts/indicator.gd" id="1_t3fs7"]
-[ext_resource type="FontFile" uid="uid://b2loifn57fsqa" path="res://content/font/Oleaguid.ttf" id="2_7pd0f"]
 [ext_resource type="Texture2D" uid="uid://taht0u0rjfst" path="res://content/textures/bar.png" id="2_dik84"]
+[ext_resource type="FontFile" uid="uid://52h841q6ybnn" path="res://content/font/20210711_pizel.ttf" id="3_dik84"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4yjbp"]
 atlas = ExtResource("2_dik84")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="LabelSettings" id="LabelSettings_yjjdj"]
-font = ExtResource("2_7pd0f")
+font = ExtResource("3_dik84")
 font_color = Color(0.8039216, 0.8235294, 0.85490197, 1)
 outline_color = Color(0.6509804, 0.68235296, 0.7294118, 1)
 
@@ -30,7 +30,7 @@ texture = SubResource("AtlasTexture_4yjbp")
 offset_left = -72.0
 offset_top = -8.0
 offset_right = 72.0
-offset_bottom = 8.0
+offset_bottom = 12.0
 label_settings = SubResource("LabelSettings_yjjdj")
 horizontal_alignment = 1
 vertical_alignment = 1
