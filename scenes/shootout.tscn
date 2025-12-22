@@ -1,21 +1,88 @@
-[gd_scene load_steps=12 format=3 uid="uid://1cuv6lbmhhoh"]
+[gd_scene load_steps=28 format=3 uid="uid://1cuv6lbmhhoh"]
 
 [ext_resource type="Texture2D" uid="uid://ex5cjwof31tm" path="res://content/textures/ball.png" id="1_hsxtp"]
 [ext_resource type="Texture2D" uid="uid://dhloutnceaykg" path="res://content/textures/pitch.png" id="1_n3isj"]
 [ext_resource type="Script" uid="uid://bp75pykowpfiv" path="res://scripts/shooting.gd" id="1_tx3n2"]
+[ext_resource type="Texture2D" uid="uid://dwwdolkdj6c1u" path="res://content/textures/missed_bg.png" id="2_yajg2"]
 [ext_resource type="Texture2D" uid="uid://dxminm27wv6bg" path="res://content/textures/ball_shadow.png" id="3_2xs8b"]
+[ext_resource type="Texture2D" uid="uid://d0p1nja6gipkw" path="res://content/textures/scored_bg.png" id="3_7sbhs"]
 [ext_resource type="PackedScene" uid="uid://ct6j6goafcrgy" path="res://scenes/indicator.tscn" id="4_4yjbp"]
 [ext_resource type="FontFile" uid="uid://b2loifn57fsqa" path="res://content/font/Oleaguid.ttf" id="4_bx4u6"]
 [ext_resource type="Script" uid="uid://byvdm2ixe7wh3" path="res://scripts/debug.gd" id="4_l1fd1"]
+[ext_resource type="Texture2D" uid="uid://6gscd2u7a7g5" path="res://content/textures/keeper.png" id="6_7sbhs"]
+[ext_resource type="Script" uid="uid://clra1rpls3xjl" path="res://scripts/keeper.gd" id="6_cuxai"]
 [ext_resource type="Script" uid="uid://65x4gyerryi4" path="res://scripts/controls.gd" id="7_p5axl"]
+[ext_resource type="Texture2D" uid="uid://dgqjlufsssvfc" path="res://content/textures/player.png" id="8_gieh0"]
+[ext_resource type="Script" uid="uid://c417x5mtmmvf3" path="res://scripts/player.gd" id="8_pciw4"]
+[ext_resource type="Script" uid="uid://c5htyw50y6fgp" path="res://scripts/announcer.gd" id="13_n4wr1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4yjbp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cuxai"]
+atlas = ExtResource("6_7sbhs")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4wr1"]
+atlas = ExtResource("6_7sbhs")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yajg2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cuxai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4wr1")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gieh0"]
+size = Vector2(33.333344, 30.666668)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4yjbp"]
 radius = 6.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pciw4"]
+atlas = ExtResource("8_gieh0")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ai35a"]
+atlas = ExtResource("8_gieh0")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l63gw"]
+atlas = ExtResource("8_gieh0")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aaerq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pciw4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ai35a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l63gw")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="LabelSettings" id="LabelSettings_l1fd1"]
 font = ExtResource("4_bx4u6")
+
+[sub_resource type="LabelSettings" id="LabelSettings_cuxai"]
+font = ExtResource("4_bx4u6")
+font_size = 32
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Node2D" type="Node2D"]
 
@@ -31,8 +98,25 @@ texture = ExtResource("1_n3isj")
 position = Vector2(160, 30)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
-scale = Vector2(7, 2.4)
+scale = Vector2(6.7, 2.3)
 shape = SubResource("RectangleShape2D_4yjbp")
+
+[node name="Keeper" type="Node2D" parent="." node_paths=PackedStringArray("Sprite", "Collider")]
+position = Vector2(160, 33)
+scale = Vector2(0.75, 0.75)
+script = ExtResource("6_cuxai")
+Sprite = NodePath("AnimatedSprite2D")
+Collider = NodePath("Area2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Keeper"]
+sprite_frames = SubResource("SpriteFrames_yajg2")
+frame_progress = 1.0
+
+[node name="Area2D" type="Area2D" parent="Keeper"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Keeper/Area2D"]
+position = Vector2(-0.66667175, 11.333336)
+shape = SubResource("RectangleShape2D_gieh0")
 
 [node name="Ball" type="Node2D" parent="."]
 position = Vector2(160, 150)
@@ -49,6 +133,27 @@ texture = ExtResource("1_hsxtp")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ball/Area2D"]
 shape = SubResource("CircleShape2D_4yjbp")
 
+[node name="MissedBG" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(160, 90)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_yajg2")
+
+[node name="ScoredBG" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(160, 90)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_7sbhs")
+
+[node name="Player" type="Node2D" parent="." node_paths=PackedStringArray("Sprite")]
+position = Vector2(125, 142)
+scale = Vector2(0.75, 0.75)
+script = ExtResource("8_pciw4")
+Sprite = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+sprite_frames = SubResource("SpriteFrames_aaerq")
+
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Direction" parent="UI" instance=ExtResource("4_4yjbp")]
@@ -63,13 +168,14 @@ Name = "Height"
 position = Vector2(240, 172)
 Name = "Power"
 
-[node name="Debug" type="Node2D" parent="." node_paths=PackedStringArray("Direction", "Height", "Speed", "Missed", "Shoot")]
+[node name="Debug" type="Node2D" parent="." node_paths=PackedStringArray("Direction", "Height", "Speed", "Missed", "ZIndex", "Shoot")]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("4_l1fd1")
 Direction = NodePath("Direction")
 Height = NodePath("Height")
 Speed = NodePath("Speed")
 Missed = NodePath("Missed")
+ZIndex = NodePath("ZIndex")
 Shoot = NodePath("../Scripts/Shooting")
 
 [node name="Direction" type="Label" parent="Debug"]
@@ -100,17 +206,39 @@ offset_right = 44.0
 offset_bottom = 101.0
 label_settings = SubResource("LabelSettings_l1fd1")
 
+[node name="ZIndex" type="Label" parent="Debug"]
+offset_left = 4.0
+offset_top = 108.0
+offset_right = 44.0
+offset_bottom = 131.0
+label_settings = SubResource("LabelSettings_l1fd1")
+
+[node name="Announcer" type="Label" parent="."]
+offset_left = -320.0
+offset_bottom = 180.0
+label_settings = SubResource("LabelSettings_cuxai")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("13_n4wr1")
+
 [node name="Scripts" type="Node" parent="."]
 
-[node name="Shooting" type="Node" parent="Scripts" node_paths=PackedStringArray("Ball", "Ball_Sprite", "Goal")]
+[node name="Shooting" type="Node" parent="Scripts" node_paths=PackedStringArray("Ball", "Ball_Sprite", "Goal", "MissedBG", "ScoredBG", "Goalie", "Announce")]
 script = ExtResource("1_tx3n2")
 Ball = NodePath("../../Ball")
 Ball_Sprite = NodePath("../../Ball/BallSprite")
 Goal = NodePath("../../Goal")
+MissedBG = NodePath("../../MissedBG")
+ScoredBG = NodePath("../../ScoredBG")
+Goalie = NodePath("../../Keeper")
+Announce = NodePath("../../Announcer")
 
-[node name="Controls" type="Node" parent="Scripts" node_paths=PackedStringArray("Shooting", "DirectionIndicator", "HeightIndicator", "SpeedIndicator")]
+[node name="Controls" type="Node" parent="Scripts" node_paths=PackedStringArray("Shooting", "Goalie", "PenaltyTaker", "DirectionIndicator", "HeightIndicator", "SpeedIndicator", "Announce")]
 script = ExtResource("7_p5axl")
 Shooting = NodePath("../Shooting")
+Goalie = NodePath("../../Keeper")
+PenaltyTaker = NodePath("../../Player")
 DirectionIndicator = NodePath("../../UI/Direction")
 HeightIndicator = NodePath("../../UI/Height")
 SpeedIndicator = NodePath("../../UI/Speed")
+Announce = NodePath("../../Announcer")

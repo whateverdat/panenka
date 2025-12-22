@@ -34,6 +34,7 @@ func set_state(state : bool) -> void:
 	
 func reset_arrow() -> void:
 	Arrow.position.x = randf_range(-36, 36)
+	set_state(false)
 	
 func get_bar_position() -> float:
 	return Arrow.position.x
