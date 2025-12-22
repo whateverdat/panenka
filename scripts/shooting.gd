@@ -110,6 +110,8 @@ func _determine_goal() -> void:
 	if (announced): return
 	match (missed):
 		1:
+			Goalie.z_index = 100
+			Ball.z_index = 50
 			if (initial_speed == MIN_SPEED):
 				Announce.announce("Panenka!")
 			elif (hit_post):
@@ -195,6 +197,7 @@ func _update_ball(delta : float) -> void:
 			if (collision.size() > 1):
 				initial_direction *= -1
 				direction *= -1
+				hit_post = true
 							
 	## Sprite offset for depth
 	Ball_Sprite.position.y -= z_axis * delta
