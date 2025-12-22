@@ -31,4 +31,8 @@ func _on_animation_finished() -> void:
 	emit_signal("ShotTaken")
 	Sprite.set_frame_and_progress(0, 0)
 	
+func set_skin(to : String) -> void:
+	if (to == "opponent"):
+		to += str(GamestateManager.current_stage)
+	Sprite.animation = to
 	

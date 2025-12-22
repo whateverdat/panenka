@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://1cuv6lbmhhoh"]
+[gd_scene load_steps=45 format=3 uid="uid://1cuv6lbmhhoh"]
 
 [ext_resource type="Texture2D" uid="uid://ex5cjwof31tm" path="res://content/textures/ball.png" id="1_hsxtp"]
 [ext_resource type="Texture2D" uid="uid://dhloutnceaykg" path="res://content/textures/pitch.png" id="1_n3isj"]
@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://d0p1nja6gipkw" path="res://content/textures/scored_bg.png" id="3_7sbhs"]
 [ext_resource type="PackedScene" uid="uid://ct6j6goafcrgy" path="res://scenes/indicator.tscn" id="4_4yjbp"]
 [ext_resource type="FontFile" uid="uid://b2loifn57fsqa" path="res://content/font/Oleaguid.ttf" id="4_bx4u6"]
-[ext_resource type="Script" uid="uid://byvdm2ixe7wh3" path="res://scripts/debug.gd" id="4_l1fd1"]
+[ext_resource type="Script" uid="uid://byvdm2ixe7wh3" path="res://scripts/info.gd" id="4_l1fd1"]
 [ext_resource type="Texture2D" uid="uid://6gscd2u7a7g5" path="res://content/textures/keeper.png" id="6_7sbhs"]
 [ext_resource type="Script" uid="uid://clra1rpls3xjl" path="res://scripts/keeper.gd" id="6_cuxai"]
 [ext_resource type="Script" uid="uid://65x4gyerryi4" path="res://scripts/controls.gd" id="7_p5axl"]
@@ -26,6 +26,14 @@ region = Rect2(0, 0, 64, 64)
 atlas = ExtResource("6_7sbhs")
 region = Rect2(64, 0, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_aaerq"]
+atlas = ExtResource("6_7sbhs")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rkg5"]
+atlas = ExtResource("6_7sbhs")
+region = Rect2(64, 64, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_yajg2"]
 animations = [{
 "frames": [{
@@ -36,7 +44,18 @@ animations = [{
 "texture": SubResource("AtlasTexture_n4wr1")
 }],
 "loop": false,
-"name": &"default",
+"name": &"opponent",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aaerq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0rkg5")
+}],
+"loop": false,
+"name": &"team",
 "speed": 5.0
 }]
 
@@ -45,6 +64,66 @@ size = Vector2(33.333344, 30.666668)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4yjbp"]
 radius = 6.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmuv0"]
+atlas = ExtResource("8_gieh0")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7geuw"]
+atlas = ExtResource("8_gieh0")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1w6f"]
+atlas = ExtResource("8_gieh0")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6oss"]
+atlas = ExtResource("8_gieh0")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7iie"]
+atlas = ExtResource("8_gieh0")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aq7jp"]
+atlas = ExtResource("8_gieh0")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2txj"]
+atlas = ExtResource("8_gieh0")
+region = Rect2(0, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mu3mn"]
+atlas = ExtResource("8_gieh0")
+region = Rect2(64, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdj1q"]
+atlas = ExtResource("8_gieh0")
+region = Rect2(128, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_opqhu"]
+atlas = ExtResource("8_gieh0")
+region = Rect2(0, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xh17n"]
+atlas = ExtResource("8_gieh0")
+region = Rect2(64, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uh3j7"]
+atlas = ExtResource("8_gieh0")
+region = Rect2(128, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1k0g"]
+atlas = ExtResource("8_gieh0")
+region = Rect2(0, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pddtr"]
+atlas = ExtResource("8_gieh0")
+region = Rect2(64, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_erkff"]
+atlas = ExtResource("8_gieh0")
+region = Rect2(128, 320, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pciw4"]
 atlas = ExtResource("8_gieh0")
@@ -62,6 +141,76 @@ region = Rect2(128, 0, 64, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_rmuv0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7geuw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1w6f")
+}],
+"loop": false,
+"name": &"opponent0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6oss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7iie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aq7jp")
+}],
+"loop": false,
+"name": &"opponent1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2txj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mu3mn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sdj1q")
+}],
+"loop": false,
+"name": &"opponent2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_opqhu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xh17n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uh3j7")
+}],
+"loop": false,
+"name": &"opponent3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1k0g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pddtr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_erkff")
+}],
+"loop": false,
+"name": &"opponent4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_pciw4")
 }, {
 "duration": 1.0,
@@ -71,12 +220,13 @@ animations = [{
 "texture": SubResource("AtlasTexture_l63gw")
 }],
 "loop": false,
-"name": &"default",
+"name": &"team",
 "speed": 5.0
 }]
 
 [sub_resource type="LabelSettings" id="LabelSettings_l1fd1"]
 font = ExtResource("4_bx4u6")
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_cuxai"]
 font = ExtResource("4_bx4u6")
@@ -110,7 +260,7 @@ Collider = NodePath("Area2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Keeper"]
 sprite_frames = SubResource("SpriteFrames_yajg2")
-frame_progress = 1.0
+animation = &"opponent"
 
 [node name="Area2D" type="Area2D" parent="Keeper"]
 
@@ -153,73 +303,65 @@ Sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 sprite_frames = SubResource("SpriteFrames_aaerq")
+animation = &"team"
 
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Direction" parent="UI" instance=ExtResource("4_4yjbp")]
-position = Vector2(80, 172)
+position = Vector2(80, 169)
 Name = "Direction"
 
 [node name="Height" parent="UI" instance=ExtResource("4_4yjbp")]
-position = Vector2(160, 172)
+position = Vector2(160, 169)
 Name = "Height"
 
 [node name="Speed" parent="UI" instance=ExtResource("4_4yjbp")]
-position = Vector2(240, 172)
+position = Vector2(240, 169)
 Name = "Power"
 
-[node name="Debug" type="Node2D" parent="." node_paths=PackedStringArray("Direction", "Height", "Speed", "Missed", "ZIndex", "Shoot")]
+[node name="Info" type="Node2D" parent="." node_paths=PackedStringArray("Penalty_Number", "Match_Score", "Game_Score", "Shoot")]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("4_l1fd1")
-Direction = NodePath("Direction")
-Height = NodePath("Height")
-Speed = NodePath("Speed")
-Missed = NodePath("Missed")
-ZIndex = NodePath("ZIndex")
+Penalty_Number = NodePath("PenaltyNumber")
+Match_Score = NodePath("MatchScore")
+Game_Score = NodePath("GameScore")
 Shoot = NodePath("../Scripts/Shooting")
 
-[node name="Direction" type="Label" parent="Debug"]
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 44.0
-offset_bottom = 27.0
+[node name="PenaltyNumber" type="Label" parent="Info"]
+offset_left = 466.0
+offset_top = 62.0
+offset_right = 634.0
+offset_bottom = 82.0
 label_settings = SubResource("LabelSettings_l1fd1")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Height" type="Label" parent="Debug"]
-offset_left = 4.0
-offset_top = 30.0
-offset_right = 44.0
-offset_bottom = 53.0
+[node name="MatchScore" type="Label" parent="Info"]
+offset_left = 466.0
+offset_top = 82.0
+offset_right = 634.0
+offset_bottom = 102.0
 label_settings = SubResource("LabelSettings_l1fd1")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Speed" type="Label" parent="Debug"]
-offset_left = 4.0
-offset_top = 56.0
-offset_right = 44.0
-offset_bottom = 79.0
+[node name="GameScore" type="Label" parent="Info"]
+offset_left = 6.0
+offset_top = 62.0
+offset_right = 174.0
+offset_bottom = 102.0
 label_settings = SubResource("LabelSettings_l1fd1")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Missed" type="Label" parent="Debug"]
-offset_left = 4.0
-offset_top = 78.0
-offset_right = 44.0
-offset_bottom = 101.0
-label_settings = SubResource("LabelSettings_l1fd1")
-
-[node name="ZIndex" type="Label" parent="Debug"]
-offset_left = 4.0
-offset_top = 108.0
-offset_right = 44.0
-offset_bottom = 131.0
-label_settings = SubResource("LabelSettings_l1fd1")
-
-[node name="Announcer" type="Label" parent="."]
+[node name="Announcer" type="Label" parent="." node_paths=PackedStringArray("info")]
 offset_left = -320.0
 offset_bottom = 180.0
 label_settings = SubResource("LabelSettings_cuxai")
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("13_n4wr1")
+info = NodePath("../Info")
 
 [node name="Scripts" type="Node" parent="."]
 
@@ -233,7 +375,7 @@ ScoredBG = NodePath("../../ScoredBG")
 Goalie = NodePath("../../Keeper")
 Announce = NodePath("../../Announcer")
 
-[node name="Controls" type="Node" parent="Scripts" node_paths=PackedStringArray("Shooting", "Goalie", "PenaltyTaker", "DirectionIndicator", "HeightIndicator", "SpeedIndicator", "Announce")]
+[node name="Controls" type="Node" parent="Scripts" node_paths=PackedStringArray("Shooting", "Goalie", "PenaltyTaker", "DirectionIndicator", "HeightIndicator", "SpeedIndicator", "Announce", "Info")]
 script = ExtResource("7_p5axl")
 Shooting = NodePath("../Shooting")
 Goalie = NodePath("../../Keeper")
@@ -242,3 +384,4 @@ DirectionIndicator = NodePath("../../UI/Direction")
 HeightIndicator = NodePath("../../UI/Height")
 SpeedIndicator = NodePath("../../UI/Speed")
 Announce = NodePath("../../Announcer")
+Info = NodePath("../../Info")
